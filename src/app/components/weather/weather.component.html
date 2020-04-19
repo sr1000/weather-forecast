@@ -1,0 +1,60 @@
+<div class="weather">
+  <form #locationForm="ngForm" (ngSubmit)="onSubmit()" class="weather__form">
+    <input aria-label="location input" class="weather__input" name="location" ngModel placeholder="Enter city name..."
+           type="text">
+  </form>
+  <p *ngIf="error" class="weather__error">{{error | uppercase}}</p>
+
+  <div class="weather__forecast">
+    <app-loading-spinner *ngIf="isLoading"></app-loading-spinner>
+    <div *ngIf="!isLoading" class="weather__container">
+      <app-toggle-switch (input)="toggleTemp()"></app-toggle-switch>
+      <div class="weather__today">
+        <img *ngIf="forecast" [src]="forecast.current?.img" alt="weather icon">
+        <h1 class="weather__location">{{ forecast?.location }}</h1>
+        <h2 class="weather__today-clouds">{{forecast?.current?.clouds}}</h2>
+        <h1
+          class="weather__today-temp">{{forecast?.current?.temp | number:'1.0-0'}}&deg;{{ isCelsius ? 'C' : 'F' }}</h1>
+      </div>
+      <div class="weather__details-container">
+        <div class="weather__details">
+          <i class="weather__details-icon fas fa-thermometer-three-quarters"></i>
+          <span class="weather__details-text">High / Low</span>
+          <span class="weather__details-value">
+            {{forecast?.current?.tempMax | number:'1.0-0'}}&deg;{{ isCelsius ? 'C' : 'F' }}
+            /
+            {{forecast?.current?.tempMin | number:'1.0-0'}}&deg;{{ isCelsius ? 'C' : 'F' }}
+          </span>
+        </div>
+        <div class="weather__details">
+          <i class="weather__details-icon fas fa-wind"></i>
+          <span class="weather__details-text">Wind</span>
+          <span class="weather__details-value">{{forecast?.current?.wind | number: '1.0-0'}} m/s</span>
+        </div>
+        <div class="weather__details">
+          <i class="weather__details-icon fas fa-tachometer-alt"></i>
+          <span class="weather__details-text">Pressure</span>
+          <span class="weather__details-value">{{forecast?.current?.pressure}} hPa</span>
+        </div>
+        <div class="weather__details">
+          <i class="weather__details-icon fas fa-tint"></i>
+          <span class="weather__details-text">Humidity</span>
+          <span class="weather__details-value">{{forecast?.current?.humidity}} %</span>
+        </div>
+      </div>
+      <div class="weather__upcoming-days">
+        <div *ngFor="let day of forecast.upcomingDays" class="weather__upcoming-day">
+          <div class="weather__day">
+            <p>{{day?.date | date: 'EEEE'}}</p>
+          </div>
+          <div class="weather__temp">
+            <p>{{day?.temp | number:'1.0-0'}}&deg;{{ isCelsius ? 'C' : 'F' }}</p>
+          </div>
+          <div class="weather__sky-container">
+            <img [src]="day?.img" alt="weather icon" class="weather__sky">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

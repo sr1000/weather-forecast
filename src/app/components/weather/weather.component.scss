@@ -1,0 +1,151 @@
+.weather {
+  min-width: 30rem;
+  padding: 2rem 0;
+
+  &__form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin-bottom: 2rem;
+  }
+
+  &__input {
+    text-align: center;
+    background-color: transparent;
+
+    &:focus::placeholder {
+      color: transparent;
+    }
+  }
+
+  &__forecast {
+    display: grid;
+    grid-template-areas: "top" "mid" "bot";
+
+    position: relative;
+    min-height: 10rem;
+
+    padding: 2rem;
+
+    color: #fff;
+
+    border-radius: 0.8rem;
+    box-shadow: 0 0.5rem 0.8rem 0 #888888;
+    background: linear-gradient(180deg, rgb(88, 14, 31) 0%, rgb(153, 26, 54) 50%, rgba(88, 14, 31, 1) 100%);
+  }
+
+  &__today {
+    grid-area: top;
+    display: flex;
+
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    &-icon {
+      padding-top: 1rem;
+      font-size: 3rem;
+    }
+
+    &-clouds {
+      font-size: 1.4rem;
+      font-weight: 300;
+    }
+
+    &-temp {
+      padding-top: 2rem;
+
+      font-size: 6rem;
+      font-weight: 100;
+      text-align: right;
+    }
+  }
+
+  &__location {
+    padding-top: 1rem;
+
+    font-size: 4rem;
+    font-weight: 500;
+  }
+
+
+  &__details-container {
+    grid-area: mid;
+    display: flex;
+    justify-content: space-between;
+
+    padding: 7rem 0;
+  }
+
+  &__details {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    &-icon {
+      font-size: 1.6rem;
+    }
+
+    &-text {
+      padding: 1.5rem 0;
+    }
+
+    &-value {
+      font-weight: 100;
+    }
+
+    @media (min-width: 380px) {
+      font-size: 1.6rem;
+      padding: 0 1rem;
+    }
+  }
+
+  &__upcoming-days {
+    grid-area: bot;
+  }
+
+  &__upcoming-day {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    font-size: 1.6rem;
+    padding: 1.5rem 0;
+  }
+
+  &__day {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+  }
+
+  &__temp {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+
+    @media (min-width: 380px) {
+      padding-right: 2rem;
+    }
+  }
+
+  &__sky-container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+  }
+
+  &__sky {
+    width: 4rem;
+    margin-right: -0.8rem;
+    margin-top: -0.3rem;
+  }
+
+  &__error {
+    margin-bottom: 1rem;
+
+    color: #580e1f;
+    font-weight: 500;
+    text-align: center;
+  }
+}
+
