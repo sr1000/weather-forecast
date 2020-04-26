@@ -18,7 +18,6 @@ export class WeatherDataService {
   getWeatherData(location: string): Observable<Forecast> {
     return this.http.get<any>(`${this.API_URL}?q=${location}&units=metric&appid=${this.API_KEY}`).pipe(
       map(data => {
-        console.log(data);
         const forecast = new Forecast();
         forecast.location = data.city.name;
         forecast.current = new Weather(
